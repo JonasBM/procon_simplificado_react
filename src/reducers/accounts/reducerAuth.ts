@@ -17,7 +17,7 @@ const initialState: IaccountsState = {
   isLoading: false,
 };
 
-interface IaccountsState {
+export interface IaccountsState {
   expiry?: Date;
   token: string | null;
   isAuthenticated?: boolean;
@@ -48,14 +48,20 @@ export default function reducerAuth(
         isLoading: false,
       };
     case UPDATE_USERPROFILE:
+      let _user: IUserProfileSerializer | undefined = undefined;
+      if (action.payload.user) {
+        _user = action.payload.user;
+      } else {
+        _user = action.payload as unknown as IUserProfileSerializer;
+      }
       return {
         ...state,
         user:
-          state.user && action.payload.user
-            ? state.user.id === action.payload.user.id
-              ? action.payload.user
+          state.user && _user
+            ? state.user.id === _user.id
+              ? _user
               : state.user
-            : null,
+            : state.user,
         isAuthenticated: true,
         isLoading: false,
       };

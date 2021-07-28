@@ -58,13 +58,33 @@ const Header = () => {
           height="50"
         />
       </a>
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-          <NavItem to="/perfil">Perfil</NavItem>
-          <NavItem to="/processos">Processos</NavItem>
-          <NavItem to="/admin">Administração</NavItem>
-        </ul>
-        {auth.isAuthenticated ? <LogoutButton /> : <LoginButton />}
+      <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+      <div className="container-fluid">
+        <div className="collapse navbar-collapse" id="navbarContent">
+          <span className="navbar-brand">
+            {auth.user
+              ? auth.user.first_name + " " + auth.user.last_name
+              : "Procon Itajaí"}
+          </span>
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <NavItem to="/perfil">Perfil</NavItem>
+            <NavItem to="/processos">Processos</NavItem>
+            {auth && auth.user && auth.user.is_staff && (
+              <NavItem to="/admin">Administração</NavItem>
+            )}
+          </ul>
+          {auth.isAuthenticated ? <LogoutButton /> : <LoginButton />}
+        </div>
       </div>
     </nav>
   );

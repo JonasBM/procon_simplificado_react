@@ -9,18 +9,19 @@ export type AppThunk = ThunkAction<any, RootState, null, Action<any>>;
 
 var names: string[] = [];
 
-type PayloadType = {
+export type PayloadType = {
   id: number;
 };
 
-type PayloadPageType = {
+export type PayloadPageType = {
   count: number;
   next: string | null;
   previous: string | null;
   results: PayloadType[];
+  num_pages?: number;
 };
 
-type ActionPayload = {
+export type ActionPayload = {
   type: string;
   payload: PayloadPageType | PayloadType[] | PayloadType | number;
 };
@@ -193,104 +194,6 @@ export class BaseMixin {
       default:
         return state;
     }
-
-    // if (this.paginated) {
-    //   switch (action.type) {
-    //     case this.types.LIST:
-    //       if (action.payload.hasOwnProperty("count")) {
-    //         payload_page = action.payload as PayloadPageType;
-    //         return payload_page;
-    //       }
-    //       throw new Error(
-    //         "List received not a array object (payload[]) in generics.mixins.reducer|LIST"
-    //       );
-    //     case this.types.CREATE:
-    //       payload_instance = action.payload as PayloadType;
-    //       return {
-    //         ...state,
-    //         results: [
-    //           ...(state as PayloadPageType).results.concat(payload_instance),
-    //         ],
-    //       };
-    //     case this.types.RETRIEVE:
-    //       payload_instance = action.payload as PayloadType;
-    //       return {
-    //         ...state,
-    //         results: [
-    //           ...(state as PayloadPageType).results.map((o) =>
-    //             o.id === payload_instance.id ? payload_instance : o
-    //           ),
-    //         ],
-    //       };
-    //     case this.types.UPDATE:
-    //       payload_instance = action.payload as PayloadType;
-    //       return {
-    //         ...state,
-    //         results: [
-    //           ...(state as PayloadPageType).results.map((o) =>
-    //             o.id === payload_instance.id ? payload_instance : o
-    //           ),
-    //         ],
-    //       };
-    //     case this.types.DESTROY:
-    //       if (typeof action.payload == "number") {
-    //         payload_id = action.payload as number;
-    //         return {
-    //           ...state,
-    //           results: [
-    //             ...(state as PayloadPageType).results.filter(
-    //               (o) => o.id !== payload_id
-    //             ),
-    //           ],
-    //         };
-    //       }
-    //       throw new Error(
-    //         "Destroy received not a number(id) in generics.mixins.reducer|DESTROY"
-    //       );
-    //     default:
-    //       return state;
-    //   }
-    // } else {
-    //   switch (action.type) {
-    //     case this.types.LIST:
-    //       if (Array.isArray(action.payload)) {
-    //         payload_array = action.payload as PayloadType[];
-    //         return [...payload_array];
-    //       }
-    //       throw new Error(
-    //         "List received not a array object (payload[]) in generics.mixins.reducer|LIST"
-    //       );
-    //     case this.types.CREATE:
-    //       payload_instance = action.payload as PayloadType;
-    //       return [...(state as PayloadType[]).concat(payload_instance)];
-    //     case this.types.RETRIEVE:
-    //       payload_instance = action.payload as PayloadType;
-    //       return [
-    //         ...(state as PayloadType[]).map((o) =>
-    //           o.id === payload_instance.id ? payload_instance : o
-    //         ),
-    //       ];
-    //     case this.types.UPDATE:
-    //       payload_instance = action.payload as PayloadType;
-    //       return [
-    //         ...(state as PayloadType[]).map((o) =>
-    //           o.id === payload_instance.id ? payload_instance : o
-    //         ),
-    //       ];
-    //     case this.types.DESTROY:
-    //       if (typeof action.payload == "number") {
-    //         payload_id = action.payload as number;
-    //         return [
-    //           ...(state as PayloadType[]).filter((o) => o.id !== payload_id),
-    //         ];
-    //       }
-    //       throw new Error(
-    //         "Destroy received not a number(id) in generics.mixins.reducer|DESTROY"
-    //       );
-    //     default:
-    //       return [...(state as PayloadType[])];
-    //   }
-    // }
   };
 
   // LIST_OPTIONS
@@ -312,6 +215,7 @@ export class BaseMixin {
         })
         .catch((err) => {
           dispatch(returnErrors(err));
+          throw err;
         });
     };
   }
@@ -335,6 +239,7 @@ export class BaseMixin {
         })
         .catch((err) => {
           dispatch(returnErrors(err));
+          throw err;
         });
     };
   }
@@ -363,13 +268,14 @@ export class ListMixin extends BaseMixin {
         })
         .catch((err) => {
           dispatch(returnErrors(err));
+          throw err;
         });
     };
   }
 }
 
 export class CreateMixin extends BaseMixin {
-  create(object: any) {
+  create(object: any, SalveState: boolean = true) {
     return (dispatch: Dispatch, getState: () => RootState) => {
       return axios
         .post(
@@ -380,21 +286,24 @@ export class CreateMixin extends BaseMixin {
             : this.header
         )
         .then((res) => {
-          dispatch({
-            type: this.types.CREATE,
-            payload: res.data,
-          });
+          if (SalveState) {
+            dispatch({
+              type: this.types.CREATE,
+              payload: res.data,
+            });
+          }
           return res.data;
         })
         .catch((err) => {
           dispatch(returnErrors(err));
+          throw err;
         });
     };
   }
 }
 
 export class RetrieveMixin extends BaseMixin {
-  retrieve(id: number) {
+  retrieve(id: number, SalveState: boolean = true) {
     return (dispatch: Dispatch, getState: () => RootState) => {
       return axios
         .get(
@@ -404,21 +313,24 @@ export class RetrieveMixin extends BaseMixin {
             : this.header
         )
         .then((res) => {
-          dispatch({
-            type: this.types.RETRIEVE,
-            payload: res.data,
-          });
+          if (SalveState) {
+            dispatch({
+              type: this.types.RETRIEVE,
+              payload: res.data,
+            });
+          }
           return res.data;
         })
         .catch((err) => {
           dispatch(returnErrors(err));
+          throw err;
         });
     };
   }
 }
 
 export class UpdateMixin extends BaseMixin {
-  update(object: any) {
+  update(object: any, SalveState: boolean = true) {
     return (dispatch: Dispatch, getState: () => RootState) => {
       if (!object.id) {
         return;
@@ -432,21 +344,24 @@ export class UpdateMixin extends BaseMixin {
             : this.header
         )
         .then((res) => {
-          dispatch({
-            type: this.types.UPDATE,
-            payload: res.data,
-          });
+          if (SalveState) {
+            dispatch({
+              type: this.types.UPDATE,
+              payload: res.data,
+            });
+          }
           return res.data;
         })
         .catch((err) => {
           dispatch(returnErrors(err));
+          throw err;
         });
     };
   }
 }
 
 export class DestroyMixin extends BaseMixin {
-  destroy(id: number) {
+  destroy(id: number, SalveState: boolean = true) {
     return (dispatch: Dispatch, getState: () => RootState) => {
       return axios
         .delete(
@@ -456,14 +371,17 @@ export class DestroyMixin extends BaseMixin {
             : this.header
         )
         .then((res) => {
-          dispatch({
-            type: this.types.DESTROY,
-            payload: id,
-          });
+          if (SalveState) {
+            dispatch({
+              type: this.types.DESTROY,
+              payload: id,
+            });
+          }
           return res.data;
         })
         .catch((err) => {
           dispatch(returnErrors(err));
+          throw err;
         });
     };
   }

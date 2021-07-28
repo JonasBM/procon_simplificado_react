@@ -1,9 +1,13 @@
 import { combineReducers } from "redux";
-import user from "./user";
 
 import reducerAuth from "./reducerAuth";
+import {
+  UserProfileCRUDAction,
+  UserRetrieveUpdateAction,
+} from "../../actions/accounts/user";
 
 export default combineReducers({
   auth: reducerAuth,
-  user: user,
+  users: UserProfileCRUDAction.reducer,
+  userslist: UserRetrieveUpdateAction.reducer,
 });

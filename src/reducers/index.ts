@@ -6,6 +6,7 @@ import messages from "./messages";
 import { ProcessoCRUDAction } from "../actions/api/processo";
 import { TipoDeSituacaoCRUDAction } from "../actions/api/tipoDeSituacao";
 import { SituacaoCRUDAction } from "../actions/api/situacao";
+import { DocumentoCRUDAction } from "../actions/api/documento";
 export default combineReducers({
   accounts,
   errors,
@@ -13,4 +14,5 @@ export default combineReducers({
   processos: ProcessoCRUDAction.reducer,
   tiposdesituacoes: TipoDeSituacaoCRUDAction.reducer,
   situacoes: SituacaoCRUDAction.reducer,
+  documentos: DocumentoCRUDAction.reducer,
 });

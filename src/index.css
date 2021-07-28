@@ -13,3 +13,24 @@ w-auto {
 caption {
   caption-side: top;
 }
+
+.btn:active {
+  transform: scale(0.95);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
+.table-sm > :not(caption) > * > * {
+  padding: 0.25rem 0.5rem !important;
+}
+
+.accordion-button:not(.collapsed) {
+  color: wheat !important;
+}
+
+.table-fixed-layout {
+  table-layout: fixed;
+}
+
+.pre-wrap {
+  white-space: pre-wrap;
+}

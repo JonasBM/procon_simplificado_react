@@ -2,38 +2,27 @@ import React from "react";
 import { Form } from "react-final-form";
 import { InputFormFloat } from "../common/FormsFloat";
 import { useDispatch } from "react-redux";
-import {
-  IauthLogin,
-  authLogin,
-  tryLoadUser,
-} from "../../actions/accounts/auth";
-import { useEffect } from "react";
+import { IauthLogin, authLogin } from "../../actions/accounts/auth";
+import { IaccountsState } from "../../reducers/accounts/reducerAuth";
 import { useHistory } from "react-router-dom";
-import { useAppSelector } from "../../hooks";
 
 const Login = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const auth = useAppSelector((state) => state.accounts.auth);
-  useEffect(() => {
-    dispatch(tryLoadUser());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (!auth.isLoading && auth.isAuthenticated != null) {
-      if (auth.isAuthenticated) {
-        history.goBack();
-      }
-    }
-  }, [auth, history]);
 
   const onSubmit = (values: IauthLogin) => {
-    dispatch(authLogin(values));
+    (dispatch(authLogin(values)) as unknown as Promise<IaccountsState>).then(
+      (res) => {
+        if (res.user?.is_active) {
+          history.push("processos/");
+        }
+      }
+    );
   };
   return (
     <div className="container-fluid h-100">
       <div className="row h-100">
-        <div className="col col-lg-3 text-center m-auto pb-5">
+        <div className="col col-lg-3 col-xl-2 text-center m-auto pb-5">
           <Form
             initialValues={{ username: "", password: "" }}
             onSubmit={onSubmit}

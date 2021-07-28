@@ -72,12 +72,42 @@ export const authLogin = (values: IauthLogin) => (dispatch: Dispatch) => {
 export const authLogout =
   () => (dispatch: Dispatch, getState: () => RootState) => {
     let tokenHeader = tokenConfig(getState());
-    console.log(tokenHeader);
     if (tokenHeader != null) {
       dispatch({ type: USER_LOADING });
       return axios
         .post(
           process.env.REACT_APP_API_URL + "api/auth/logout/",
+          null,
+          tokenHeader
+        )
+        .then((res) => {
+          dispatch({
+            type: LOGOUT_SUCCESS,
+            payload: res.data,
+          });
+          return res;
+        })
+        .catch((err) => {
+          dispatch(returnErrors(err));
+          dispatch({
+            type: AUTH_ERROR,
+          });
+        });
+    } else {
+      dispatch({ type: AUTH_ERROR });
+    }
+  };
+
+// LOGOUT USER
+export const authLogoutAll =
+  () => (dispatch: Dispatch, getState: () => RootState) => {
+    let tokenHeader = tokenConfig(getState());
+    console.log(tokenHeader);
+    if (tokenHeader != null) {
+      dispatch({ type: USER_LOADING });
+      return axios
+        .post(
+          process.env.REACT_APP_API_URL + "api/auth/logoutall/",
           null,
           tokenHeader
         )

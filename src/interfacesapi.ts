@@ -9,7 +9,7 @@ export interface IProfileSerializer {
 }
 
 export interface IUserProfileSerializer {
-  id?: number;
+  id: number;
   profile?: IProfileSerializer;
   last_login?: string;
   date_joined?: string;
@@ -30,29 +30,48 @@ export interface IChangePasswordSerializer {
 }
 
 export interface ITipo_de_situacaoSerializer {
-  id?: number;
+  id: number;
   ordem: number;
   nome: string;
-  css_cor?: string | null;
+  css_cor: string;
   descricao?: string | null;
 }
 
 export interface ISituacaoSerializer {
-  id?: number;
+  id: number;
   processo?: any;
   tipo_de_situacao: any;
   data?: string;
-  observacao?: string | null;
+  comentario?: string | null;
 }
 
 export interface IProcessoSerializer {
-  id?: number;
-  criado_em: string;
+  id: number;
+  criado_em?: string;
   identificacao?: string | null;
   auto_infracao?: string | null;
   reclamante?: string | null;
   reclamada?: string | null;
   cpf_cnpj?: string | null;
   ficha_de_atendimento?: string | null;
-  ultima_situacao: ISituacaoSerializer;
+  ultima_situacao?: ISituacaoSerializer;
+}
+
+export interface IComentarioDocumentoSerializer {
+  id: number;
+  documento: any;
+  owner?: any;
+  comentario: string;
+  criado_em?: string;
+}
+
+export interface IDocumentoSerializer {
+  id: number;
+  processo: any;
+  arquivo?: any;
+  nome: any;
+  descricao?: string | null;
+  criado_em?: string;
+  ultima_alteracao?: string;
+  comentarios?: IComentarioDocumentoSerializer[];
 }
