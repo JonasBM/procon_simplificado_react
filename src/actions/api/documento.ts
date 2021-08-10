@@ -26,9 +26,15 @@ export const DownloadDocumento =
       axiosConfig.responseType = "blob";
     }
 
+    let url = documento.arquivo;
+
+    if (!documento.arquivo.startsWith("https")) {
+      url = documento.arquivo.replace("http", "https");
+    }
+
     try {
       axios
-        .get(documento.arquivo, axiosConfig)
+        .get(url, axiosConfig)
         .then((response) => {
           const file = new Blob([response.data], {
             type: response.headers["content-type"],
