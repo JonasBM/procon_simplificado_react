@@ -88,7 +88,7 @@ export const DownloadDocumentosDoProcesso =
           fileLink.href = fileURL;
           fileLink.download =
             "documentos_processo_" +
-            processo.identificacao?.replace(/[\/\\?%*:|"<>#$!`&@{}='+=]/g, "");
+            processo.identificacao?.replace(/[/\\?%*:|"<>#$!`&@{}='+=]/g, "");
           fileLink.click();
           URL.revokeObjectURL(fileURL);
         })

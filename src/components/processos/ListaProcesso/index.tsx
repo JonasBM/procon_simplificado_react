@@ -1,6 +1,5 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { useEffect } from "react";
-import { Form } from "react-final-form";
 import { useDispatch } from "react-redux";
 import { ProcessoCRUDAction } from "../../../actions/api/processo";
 import { TipoDeSituacaoCRUDAction } from "../../../actions/api/tipoDeSituacao";
@@ -65,7 +64,7 @@ const Processos = () => {
   const [searchParams, setSearchParams] = useState<object>();
 
   const [page, setPage] = useState(0);
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize] = useState(5);
   const [pageMax, setPageMax] = useState(1);
 
   useLayoutEffect(() => {
@@ -145,7 +144,7 @@ const Processos = () => {
             <th scope="col">Reclamada</th>
             <th scope="col">CPF/CNPJ</th>
             <th scope="col">Ficha de Atendimento</th>
-            <th scope="col">Situação</th>
+            <th scope="col">Local</th>
             <th scope="col">Data</th>
             <th scope="col"></th>
           </tr>
@@ -187,7 +186,7 @@ const Processos = () => {
                     data-listprocessos_search_params={queryString.stringify(
                       searchParams
                     )}
-                    title="Criar Situação"
+                    title="Alterar Local"
                   >
                     <i className="bi bi-forward"></i>
                   </button>

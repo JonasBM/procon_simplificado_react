@@ -22,6 +22,7 @@ export interface IUserProfileSerializer {
   is_active?: boolean;
   groups?: any[];
   user_permissions?: any[];
+  resethack?: [];
 }
 
 export interface IChangePasswordSerializer {
@@ -35,6 +36,7 @@ export interface ITipo_de_situacaoSerializer {
   nome: string;
   css_cor: string;
   descricao?: string | null;
+  resethack?: [];
 }
 
 export interface ISituacaoSerializer {
@@ -43,6 +45,7 @@ export interface ISituacaoSerializer {
   tipo_de_situacao: any;
   data?: string;
   comentario?: string | null;
+  resethack?: [];
 }
 
 export interface IProcessoSerializer {
@@ -63,6 +66,7 @@ export interface IComentarioDocumentoSerializer {
   owner?: any;
   comentario: string;
   criado_em?: string;
+  resethack?: [];
 }
 
 export interface IDocumentoSerializer {
@@ -74,4 +78,5 @@ export interface IDocumentoSerializer {
   criado_em?: string;
   ultima_alteracao?: string;
   comentarios?: IComentarioDocumentoSerializer[];
+  resethack?: [];
 }

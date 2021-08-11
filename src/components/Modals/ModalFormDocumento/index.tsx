@@ -11,7 +11,6 @@ import { DocumentoCRUDAction } from "../../../actions/api/documento";
 import { updateList } from "../../processos/ListaProcesso";
 //import * as bootstrap from "bootstrap";
 
-const moment = require("moment");
 const queryString = require("query-string");
 
 export const destroyDocumento = (
@@ -64,6 +63,7 @@ export default function ModalFormDocumento() {
       processo: parsed_processo_id,
       nome: "",
       comentarios: [],
+      resethack: [],
     });
 
     let _documento;
@@ -154,8 +154,8 @@ export default function ModalFormDocumento() {
               {documento !== undefined
                 ? documento.id !== 0
                   ? "Editar " + documento.nome
-                  : "Nova Situação"
-                : "Nova Situação"}
+                  : "Novo Documento"
+                : "Novo Documento"}
             </h5>
             <button
               id={modalID + "Close"}

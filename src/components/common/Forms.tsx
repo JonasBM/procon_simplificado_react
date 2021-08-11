@@ -1,6 +1,6 @@
 import React, { Fragment, useRef, useState } from "react";
 import { Field, FieldProps, useFormState } from "react-final-form";
-import { useAppSelector } from "../../hooks";
+//import { useAppSelector } from "../../hooks";
 
 export const required = (value: any) =>
   value ? undefined : "Campo obrigatório";
@@ -43,7 +43,7 @@ const defaultErrorsValues: { [key: string]: any } = {
 };
 
 export const Error = ({ name, innerRefs }: FieldPropsWithInnerRef) => {
-  const serverError = useAppSelector((state) => state.errors.msg[name]);
+  //const serverError = useAppSelector((state) => state.errors.msg[name]);
   //const serverError = {};
   let formState = useFormState();
   return (

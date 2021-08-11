@@ -1,7 +1,5 @@
 import React, { Fragment } from "react";
 import { InputForm, required, SelectForm } from "../../common/Forms";
-import formatString from "format-string-by-pattern";
-import { Field } from "react-final-form";
 import { useAppSelector } from "../../../hooks";
 import { ITipo_de_situacaoSerializer } from "../../../interfacesapi";
 
@@ -18,7 +16,7 @@ const FormSituacao = () => {
       <div className="row mb-2">
         <SelectForm
           name="tipo_de_situacao"
-          label="Tipo de Situação:"
+          label="Tipo de Local:"
           classNameDiv="col-lg-9"
           classNameLabel="col-lg-3"
           required
@@ -45,8 +43,8 @@ const FormSituacao = () => {
       <div className="row mb-2">
         <InputForm
           name="comentario"
-          label="Comentario:"
-          placeholder="Comentario diverso"
+          label="Comentário:"
+          placeholder="Comentário diverso"
           type="text"
           classNameDiv="col-lg-9"
           classNameLabel="col-lg-3"

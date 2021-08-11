@@ -13,7 +13,7 @@ const Login = () => {
   const onSubmit = (values: IauthLogin) => {
     (dispatch(authLogin(values)) as unknown as Promise<IaccountsState>).then(
       (res) => {
-        if (res.user?.is_active) {
+        if (res && res.user?.is_active) {
           history.push("processos/");
         }
       }

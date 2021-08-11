@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form } from "react-final-form";
-import { InputForm, required } from "../common/Forms";
+import { InputForm } from "../common/Forms";
 import { useDispatch } from "react-redux";
 import { ChangePasswordUpdateAction } from "../../actions/accounts/user";
 import {

@@ -1,13 +1,10 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 import AccordionItem from "../common/AccordionItem";
 import BackupRestore from "./backupRestore";
 import ListaTiposdeSituacoes from "./listaTiposdeSituacoes";
 import ListaUsarios from "./listaUsuarios";
 
 export default function Admin() {
-  const dispatch = useDispatch();
-
   return (
     <div>
       <div className="mx-5 mt-2">
@@ -28,7 +25,7 @@ export default function Admin() {
           </AccordionItem>
           <AccordionItem
             name="tiposdesituacoes"
-            title="Lista de Tipos de Situações"
+            title="Lista de Tipos de Locais"
             accordionId="accordionAdmin"
           >
             <ListaTiposdeSituacoes />

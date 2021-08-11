@@ -43,6 +43,7 @@ export default function ModalFormSituação() {
       email: "",
       is_staff: false,
       is_active: true,
+      resethack: [],
     });
 
     let _usuario;

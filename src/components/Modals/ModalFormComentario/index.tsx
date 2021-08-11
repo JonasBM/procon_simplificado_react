@@ -8,17 +8,14 @@ import CommonModalFooter from "../CommonModalFooter";
 import { useDispatch } from "react-redux";
 import { ActionPayload } from "../../../actions/generics/mixins";
 import { ComentarioCRUDAction } from "../../../actions/api/comentario";
-import { updateList } from "../../processos/ListaProcesso";
 import { DocumentoCRUDAction } from "../../../actions/api/documento";
-
-const queryString = require("query-string");
 
 export const destroyComentario = (
   _comentario: IComentarioDocumentoSerializer | undefined
 ) => {
   if (_comentario !== undefined && _comentario.id !== undefined) {
     let newLine = "\r\n";
-    let confirm_alert = "Tem certeza que gostaria de deletar este Comentario?";
+    let confirm_alert = "Tem certeza que gostaria de deletar este Comentário?";
     confirm_alert += newLine;
     confirm_alert += _comentario.comentario;
     if (window.confirm(confirm_alert)) {
@@ -63,6 +60,7 @@ export default function ModalFormSituação() {
       id: 0,
       documento: parsed_documento_id,
       comentario: "",
+      resethack: [],
     });
   };
 
@@ -112,7 +110,7 @@ export default function ModalFormSituação() {
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title font-weight-bold">Nova Situação</h5>
+            <h5 className="modal-title font-weight-bold">Novo Comentário</h5>
             <button
               id={modalID + "Close"}
               type="button"

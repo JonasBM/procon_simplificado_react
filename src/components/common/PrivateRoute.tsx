@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Route, Redirect, useLocation, useHistory } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import { tryLoadUser } from "../../actions/accounts/auth";
 import { useAppSelector } from "../../hooks";
 

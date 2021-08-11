@@ -1,5 +1,4 @@
 import { Dispatch } from "redux";
-import { IProcessoSerializer } from "../../interfacesapi";
 import { RootState } from "../../store";
 import { CRUDAction } from "../generics";
 import { formatData, tokenConfig } from "../actionUtils";

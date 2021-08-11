@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { InputForm, SelectForm } from "../../../common/Forms";
 import formatString from "format-string-by-pattern";
 import { ITipo_de_situacaoSerializer } from "../../../../interfacesapi";
@@ -105,7 +105,7 @@ const FormFiltroProcesso = () => {
           <div className="row">
             <SelectForm
               name="tipo_de_situacao"
-              label="Situação atual:"
+              label="Local atual:"
               classNameDiv="col-lg-6"
               classNameLabel="col-lg-6"
             >

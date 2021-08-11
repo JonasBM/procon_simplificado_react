@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { FileField, InputForm, required } from "../../common/Forms";
+import { FileField, InputForm } from "../../common/Forms";
 
 const FormDocumento = () => {
   return (
@@ -25,7 +25,7 @@ const FormDocumento = () => {
           classNameDiv="col-lg-9"
           classNameLabel="col-lg-3"
           format={(value) =>
-            value ? value.replace(/[\/\\?%*:|"<>#$!`&@{}='+=]/g, "") : ""
+            value ? value.replace(/[/\\?%*:|"<>#$!`&@{}='+=]/g, "") : ""
           }
           required
         />

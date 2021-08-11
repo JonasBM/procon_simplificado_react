@@ -41,7 +41,7 @@ const TiposDeSituacoes = () => {
         data-tipodesituacao_id={0}
         className="btn btn-primary"
         type="button"
-        title="Criar Tipo de Situação"
+        title="Criar Tipo de Local"
       >
         Adicionar <i className="bi bi-plus-lg ms-1"></i>
       </button>
@@ -60,51 +60,53 @@ const TiposDeSituacoes = () => {
               </thead>
 
               <tbody {...provided.droppableProps} ref={provided.innerRef}>
-                {tiposDeSituacoes.map((tipoDeSituacao, index) => {
-                  return (
-                    <Draggable
-                      key={tipoDeSituacao.id}
-                      draggableId={tipoDeSituacao.id.toString()}
-                      index={index}
-                    >
-                      {(provided) => (
-                        <tr
-                          key={tipoDeSituacao.id}
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                        >
-                          <td>-</td>
-                          <td>{tipoDeSituacao.nome}</td>
-                          <td>{tipoDeSituacao.css_cor}</td>
-                          <td>{tipoDeSituacao.descricao}</td>
-                          <td>
-                            <button
-                              type="button"
-                              className="btn btn-outline-warning border-0 btn-sm"
-                              data-bs-toggle="modal"
-                              data-bs-target="#ModalFormTipoDeSituacao"
-                              data-tipodesituacao_id={tipoDeSituacao.id}
-                              title="Editar Tipo de Situação"
-                            >
-                              <i className="bi bi-pencil-square"></i>
-                            </button>
-                            <button
-                              type="button"
-                              className="btn btn-outline-danger border-0 btn-sm"
-                              onClick={() => {
-                                destroyTipoDeSituacao(tipoDeSituacao);
-                              }}
-                              title="Excluir Tipo de Situação"
-                            >
-                              <i className="bi bi-x-square"></i>
-                            </button>
-                          </td>
-                        </tr>
-                      )}
-                    </Draggable>
-                  );
-                })}
+                {tiposDeSituacoes
+                  .sort((a, b) => (a.ordem < b.ordem ? -1 : 1))
+                  .map((tipoDeSituacao, index) => {
+                    return (
+                      <Draggable
+                        key={tipoDeSituacao.id}
+                        draggableId={tipoDeSituacao.id.toString()}
+                        index={index}
+                      >
+                        {(provided) => (
+                          <tr
+                            key={tipoDeSituacao.id}
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                          >
+                            <td>-</td>
+                            <td>{tipoDeSituacao.nome}</td>
+                            <td>{tipoDeSituacao.css_cor}</td>
+                            <td>{tipoDeSituacao.descricao}</td>
+                            <td>
+                              <button
+                                type="button"
+                                className="btn btn-outline-warning border-0 btn-sm"
+                                data-bs-toggle="modal"
+                                data-bs-target="#ModalFormTipoDeSituacao"
+                                data-tipodesituacao_id={tipoDeSituacao.id}
+                                title="Editar Tipo de Local"
+                              >
+                                <i className="bi bi-pencil-square"></i>
+                              </button>
+                              <button
+                                type="button"
+                                className="btn btn-outline-danger border-0 btn-sm"
+                                onClick={() => {
+                                  destroyTipoDeSituacao(tipoDeSituacao);
+                                }}
+                                title="Excluir Tipo de Local"
+                              >
+                                <i className="bi bi-x-square"></i>
+                              </button>
+                            </td>
+                          </tr>
+                        )}
+                      </Draggable>
+                    );
+                  })}
               </tbody>
             </table>
           )}

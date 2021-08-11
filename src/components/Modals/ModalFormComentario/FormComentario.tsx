@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { FileField, InputForm, required } from "../../common/Forms";
+import { InputForm } from "../../common/Forms";
 
 const FormDocumento = () => {
   return (
@@ -7,8 +7,8 @@ const FormDocumento = () => {
       <div className="row mb-2">
         <InputForm
           name="comentario"
-          label="Comentario:"
-          placeholder="Descrição do documento"
+          label="Comentário:"
+          placeholder="comentário sobre o documento"
           component="textarea"
           cols="40"
           rows="20"

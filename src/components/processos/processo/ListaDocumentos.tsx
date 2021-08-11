@@ -9,18 +9,12 @@ import { useAppSelector } from "../../../hooks";
 import {
   IDocumentoSerializer,
   IProcessoSerializer,
-  IProfileSerializer,
   IUserProfileSerializer,
 } from "../../../interfacesapi";
-import {
-  getFilename,
-  getTipoDeSituacaoBySituacao,
-  getUserByID,
-} from "../../../utils";
+import { getFilename, getUserByID } from "../../../utils";
 import AccordionItem from "../../common/AccordionItem";
 import { destroyComentario } from "../../Modals/ModalFormComentario";
 import { destroyDocumento } from "../../Modals/ModalFormDocumento";
-import { destroySituacao } from "../../Modals/ModalFormSituação";
 
 const moment = require("moment");
 
@@ -76,6 +70,13 @@ const ListaDocumentos = ({
       <div className="accordion mt-2" id="accordionDocumentos">
         {documentos
           .filter((documento) => documento.processo === processoID)
+          .sort((a, b) =>
+            a.ultima_alteracao &&
+            b.ultima_alteracao &&
+            a.ultima_alteracao > b.ultima_alteracao
+              ? -1
+              : 1
+          )
           .map((documento, index) => {
             const filename = getFilename(documento.arquivo);
             return (
@@ -150,50 +151,56 @@ const ListaDocumentos = ({
                 </div>
                 <ul className="list-group list-group-flush">
                   {documento.comentarios &&
-                    documento.comentarios.map((comentario, index) => {
-                      const comentario_owner = getUserByID(comentario.owner);
-                      return (
-                        <li
-                          className="list-group-item text-light py-1"
-                          key={comentario.id}
-                        >
-                          <div className="d-flex w-100 justify-content-between">
-                            <span className="mb-1 pre-wrap">
-                              <span
-                                className={
-                                  "me-1" +
-                                  (comentario_owner?.first_name === "Sistema"
-                                    ? " text-info"
-                                    : " text-warning")
-                                }
-                              >
-                                {comentario_owner?.first_name}{" "}
-                                {comentario_owner?.last_name}:
-                              </span>
-                              {comentario.comentario}
-                            </span>
-                            <small>
-                              {moment(comentario.criado_em).format(
-                                "DD/MM/YYYY HH:mm"
-                              )}
-                              {(authUser.is_staff ||
-                                comentario.owner === authUser.id) && (
-                                <button
-                                  type="button"
-                                  className="btn btn-outline-danger border-0 btn-sm"
-                                  onClick={() => {
-                                    destroyComentario(comentario);
-                                  }}
-                                  title="Excluir comentário"
+                    documento.comentarios
+                      .sort((a, b) =>
+                        a.criado_em && b.criado_em && a.criado_em > b.criado_em
+                          ? -1
+                          : 1
+                      )
+                      .map((comentario, index) => {
+                        const comentario_owner = getUserByID(comentario.owner);
+                        return (
+                          <li
+                            className="list-group-item text-light py-1"
+                            key={comentario.id}
+                          >
+                            <div className="d-flex w-100 justify-content-between">
+                              <span className="mb-1 pre-wrap">
+                                <span
+                                  className={
+                                    "me-1" +
+                                    (comentario_owner?.first_name === "Sistema"
+                                      ? " text-info"
+                                      : " text-warning")
+                                  }
                                 >
-                                  <i className="bi bi-x-square"></i>
-                                </button>
-                              )}
-                            </small>
-                          </div>
-                        </li>
-                      );
-                    })}
+                                  {comentario_owner?.first_name}{" "}
+                                  {comentario_owner?.last_name}:
+                                </span>
+                                {comentario.comentario}
+                              </span>
+                              <small>
+                                {moment(comentario.criado_em).format(
+                                  "DD/MM/YYYY HH:mm"
+                                )}
+                                {(authUser.is_staff ||
+                                  comentario.owner === authUser.id) && (
+                                  <button
+                                    type="button"
+                                    className="btn btn-outline-danger border-0 btn-sm"
+                                    onClick={() => {
+                                      destroyComentario(comentario);
+                                    }}
+                                    title="Excluir comentário"
+                                  >
+                                    <i className="bi bi-x-square"></i>
+                                  </button>
+                                )}
+                              </small>
+                            </div>
+                          </li>
+                        );
+                      })}
                 </ul>
               </AccordionItem>
             );

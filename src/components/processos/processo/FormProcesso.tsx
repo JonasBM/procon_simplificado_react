@@ -10,11 +10,17 @@ const FormProcesso = () => {
       <div className="row mb-2">
         <InputForm
           name="identificacao"
-          label="Numero do processo:"
+          label="Processo:"
           placeholder={"000/" + ano}
           type="text"
           classNameDiv="col-lg-9"
           classNameLabel="col-lg-3"
+          //parse={formatString("999/9999")}
+          parse={(value) => {
+            if (!value) return value;
+            const onlyNumbers = value.replace(/[^\d]/g, "");
+            return formatString("999/9999", onlyNumbers);
+          }}
           required
           autoFocus
         />
@@ -23,10 +29,15 @@ const FormProcesso = () => {
         <InputForm
           name="auto_infracao"
           label="Auto de Infração:"
-          placeholder={"000/" + ano}
+          placeholder={ano + ".000"}
           type="text"
           classNameDiv="col-lg-9"
           classNameLabel="col-lg-3"
+          parse={(value) => {
+            if (!value) return value;
+            const onlyNumbers = value.replace(/[^\d]/g, "");
+            return formatString("9999.999", onlyNumbers);
+          }}
         />
       </div>
       <div className="row mb-2">
@@ -79,7 +90,11 @@ const FormProcesso = () => {
           type="text"
           classNameDiv="col-lg-9"
           classNameLabel="col-lg-3"
-          required
+          parse={(value) => {
+            if (!value) return value;
+            const onlyNumbers = value.replace(/[^\d]/g, "");
+            return formatString("99-999.999.99-9999999", onlyNumbers);
+          }}
         />
       </div>
     </Fragment>

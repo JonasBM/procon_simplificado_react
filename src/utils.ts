@@ -80,6 +80,7 @@ export function getUserByID(id: number): IUserProfileSerializer | undefined {
     const userslist = store.getState().accounts
       .userslist as IUserProfileSerializer[];
     let user = userslist.find((e) => e.id === id);
+    console.log(user);
     return user;
   }
 }

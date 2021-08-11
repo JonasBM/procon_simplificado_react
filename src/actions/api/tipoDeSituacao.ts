@@ -1,6 +1,6 @@
 import { Dispatch } from "redux";
 import { RootState } from "../../store";
-import { CRUDAction, UpdateAction } from "../generics";
+import { CRUDAction } from "../generics";
 import { formatData, tokenConfig } from "../actionUtils";
 import axios from "axios";
 import { returnErrors } from "../actionMessages";

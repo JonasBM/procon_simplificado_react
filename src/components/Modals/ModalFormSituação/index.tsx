@@ -8,8 +8,7 @@ import CommonModalFooter from "../CommonModalFooter";
 import { useDispatch } from "react-redux";
 import { ActionPayload } from "../../../actions/generics/mixins";
 import { SituacaoCRUDAction } from "../../../actions/api/situacao";
-import { formatDateTime, getTipoDeSituacaoBySituacao } from "../../../utils";
-import { ProcessoCRUDAction } from "../../../actions/api/processo";
+import { getTipoDeSituacaoBySituacao } from "../../../utils";
 import { updateList } from "../../processos/ListaProcesso";
 import { DocumentoCRUDAction } from "../../../actions/api/documento";
 //import * as bootstrap from "bootstrap";
@@ -20,7 +19,7 @@ const queryString = require("query-string");
 export const destroySituacao = (_situacao: ISituacaoSerializer | undefined) => {
   if (_situacao !== undefined && _situacao.id !== undefined) {
     let newLine = "\r\n";
-    let confirm_alert = "Tem certeza que gostaria de deletar esta Situação?";
+    let confirm_alert = "Tem certeza que gostaria de deletar este local?";
     confirm_alert += newLine;
     confirm_alert +=
       getTipoDeSituacaoBySituacao(_situacao)?.nome +
@@ -65,6 +64,7 @@ export default function ModalFormSituação() {
       tipo_de_situacao: null,
       data: moment().format("YYYY-MM-DDTHH:mm"),
       comentario: null,
+      resethack: [],
     });
 
     let _situacao;
@@ -172,8 +172,8 @@ export default function ModalFormSituação() {
               {situacao !== undefined
                 ? situacao.id !== 0
                   ? "Editar " + situacao.data
-                  : "Nova Situação"
-                : "Nova Situação"}
+                  : "Novo Local"
+                : "Novo Local"}
             </h5>
             <button
               id={modalID + "Close"}

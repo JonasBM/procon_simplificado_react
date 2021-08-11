@@ -1,12 +1,6 @@
 import React from "react";
-import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { UserProfileCRUDAction } from "../../../actions/accounts/user";
-import { useAppSelector } from "../../../hooks";
-import { IUserProfileSerializer } from "../../../interfacesapi";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { destroyUsuario } from "../../Modals/ModalFormUsuario";
-import { FileField, InputForm } from "../../common/Forms";
+import { FileField } from "../../common/Forms";
 import { Form } from "react-final-form";
 import {
   DownloadTodosProcessos,
@@ -109,8 +103,8 @@ const BackupRestore = () => {
                 <th scope="col">Reclamante</th>
                 <th scope="col">Reclamada</th>
                 <th scope="col">CPF/CNPJ</th>
-                <th scope="col">Nome da última Situação</th>
-                <th scope="col">Data da última situação</th>
+                <th scope="col">Nome do último local</th>
+                <th scope="col">Data do último local</th>
                 <th scope="col">Ficha de Atendimento</th>
               </tr>
             </thead>

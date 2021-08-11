@@ -1,17 +1,10 @@
-import React, { Fragment, useEffect, useRef, useState } from "react";
-import { Form, Field } from "react-final-form";
-import { InputForm, Error } from "../../common/Forms";
-import {
-  IProcessoSerializer,
-  ITipo_de_situacaoSerializer,
-  ISituacaoSerializer,
-} from "../../../interfacesapi";
+import React, { Fragment, useEffect, useState } from "react";
+import { Form } from "react-final-form";
+import { IProcessoSerializer } from "../../../interfacesapi";
 import { ProcessoCRUDAction } from "../../../actions/api/processo";
 import { TipoDeSituacaoCRUDAction } from "../../../actions/api/tipoDeSituacao";
-import { SituacaoCRUDAction } from "../../../actions/api/situacao";
 import { useDispatch } from "react-redux";
-import { useAppSelector, useQuery } from "../../../hooks";
-import { returnErrors } from "../../../actions/actionMessages";
+import { useQuery } from "../../../hooks";
 import { useLayoutEffect } from "react";
 import FormProcesso from "./FormProcesso";
 import ListaSituacoes from "./ListaSituacoes";
@@ -19,13 +12,12 @@ import AccordionItem from "../../common/AccordionItem";
 import { useHistory } from "react-router-dom";
 import store from "../../../store";
 import { ActionPayload } from "../../../actions/generics/mixins";
-import { destroySituacao } from "../../Modals/ModalFormSituação";
 import ListaDocumentos from "./ListaDocumentos";
 
 export const destroyProcesso = (_processo: IProcessoSerializer | undefined) => {
   if (_processo !== undefined && _processo.id !== undefined) {
     let newLine = "\r\n";
-    let confirm_alert = "Tem certeza que gostaria de deletar esta Situação?";
+    let confirm_alert = "Tem certeza que gostaria de deletar este Processo?";
     confirm_alert += newLine;
     confirm_alert += "Protocolo: " + _processo.identificacao;
     if (window.confirm(confirm_alert)) {
@@ -171,7 +163,11 @@ const Processo = () => {
               >
                 <div className="w-100 card">
                   <h5 className="card-header text-center">
-                    Criação de Processo
+                    {processo !== undefined
+                      ? processo.id !== 0
+                        ? "Editar processo " + processo.identificacao
+                        : "Criação de Processo"
+                      : "Criação de Processo"}
                   </h5>
                   <div className="card-body text-lg-end">
                     <FormProcesso />
@@ -202,7 +198,7 @@ const Processo = () => {
                         <Fragment>
                           <button
                             type="button"
-                            className="btn btn-primary font-weight-bold ms-5"
+                            className="btn btn-primary font-weight-bold ms-5 d-none"
                             onClick={() => {
                               form.mutators.setValue("id", 0);
                               form.submit();
@@ -237,7 +233,7 @@ const Processo = () => {
             <div className="accordion mt-2" id="accordionProcesso">
               <AccordionItem
                 name="situacoes"
-                title="Lista de Situações"
+                title="Lista de Locais"
                 accordionId="accordionProcesso"
                 isOpen={true}
                 stayOpen={true}

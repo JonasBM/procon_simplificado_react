@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { authLogoutAll } from "../../actions/accounts/auth";
 import { useAppSelector } from "../../hooks";
 import { IUserProfileSerializer } from "../../interfacesapi";
