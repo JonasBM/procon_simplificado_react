@@ -64,7 +64,11 @@ export const NavegacaoPaginas = ({
             </li>
           );
         })}
-        <li className={"page-item" + (page === pageMax ? " disabled" : "")}>
+        <li
+          className={
+            "page-item" + (page === pageMax || pageMax === 0 ? " disabled" : "")
+          }
+        >
           <button
             className="page-link"
             onClick={() => {

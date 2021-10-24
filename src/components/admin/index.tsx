@@ -25,7 +25,7 @@ export default function Admin() {
           </AccordionItem>
           <AccordionItem
             name="tiposdesituacoes"
-            title="Lista de Tipos de Locais"
+            title="Lista de Tipos de Situações"
             accordionId="accordionAdmin"
           >
             <ListaTiposdeSituacoes />

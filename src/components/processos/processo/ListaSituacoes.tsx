@@ -37,15 +37,15 @@ const ListaSituacoes = ({ processoID = 0 }: { processoID?: number }) => {
         data-processo_id={processoID}
         className="btn btn-primary"
         type="button"
-        title="Alterar Local"
+        title="Alterar Situação"
       >
-        Novo Local <i className="bi bi-plus-lg ms-1"></i>
+        Nova Situação <i className="bi bi-plus-lg ms-1"></i>
       </button>
 
       <table className="table table-dark table-striped table-hover table-sm mt-1 table-fixed-layout">
         <thead>
           <tr>
-            <th scope="col">Local</th>
+            <th scope="col">Situação</th>
             <th scope="col">data</th>
             <th scope="col">Comentário</th>
             {authUser.is_staff && <th scope="col"></th>}
@@ -61,7 +61,7 @@ const ListaSituacoes = ({ processoID = 0 }: { processoID?: number }) => {
                   {situacao.tipo_de_situacao &&
                   (tipo_de_situacao = getTipoDeSituacaoBySituacao(situacao))
                     ? tipo_de_situacao.nome
-                    : "Sem Local"}
+                    : "Sem Situação"}
                 </td>
                 <td>{moment(situacao.data).format("DD/MM/YYYY HH:mm")}</td>
                 <td
@@ -79,7 +79,7 @@ const ListaSituacoes = ({ processoID = 0 }: { processoID?: number }) => {
                       data-bs-target="#ModalFormSituacao"
                       data-situacao_id={situacao.id}
                       data-processo_id={situacao.processo}
-                      title="Editar Local"
+                      title="Editar Situação"
                     >
                       <i className="bi bi-pencil-square"></i>
                     </button>
@@ -89,7 +89,7 @@ const ListaSituacoes = ({ processoID = 0 }: { processoID?: number }) => {
                       onClick={() => {
                         destroySituacao(situacao);
                       }}
-                      title="Excluir Local"
+                      title="Excluir Situação"
                     >
                       <i className="bi bi-x-square"></i>
                     </button>

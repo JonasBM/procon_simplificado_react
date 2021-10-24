@@ -144,7 +144,7 @@ const Processos = () => {
             <th scope="col">Reclamada</th>
             <th scope="col">CPF/CNPJ</th>
             <th scope="col">Ficha de Atendimento</th>
-            <th scope="col">Local</th>
+            <th scope="col">Situação</th>
             <th scope="col">Data</th>
             <th scope="col"></th>
           </tr>
@@ -186,7 +186,7 @@ const Processos = () => {
                     data-listprocessos_search_params={queryString.stringify(
                       searchParams
                     )}
-                    title="Alterar Local"
+                    title="Alterar Situação"
                   >
                     <i className="bi bi-forward"></i>
                   </button>

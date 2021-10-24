@@ -233,7 +233,7 @@ const Processo = () => {
             <div className="accordion mt-2" id="accordionProcesso">
               <AccordionItem
                 name="situacoes"
-                title="Lista de Locais"
+                title="Lista de Situações"
                 accordionId="accordionProcesso"
                 isOpen={true}
                 stayOpen={true}

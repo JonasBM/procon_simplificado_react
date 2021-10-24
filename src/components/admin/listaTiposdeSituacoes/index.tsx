@@ -41,7 +41,7 @@ const TiposDeSituacoes = () => {
         data-tipodesituacao_id={0}
         className="btn btn-primary"
         type="button"
-        title="Criar Tipo de Local"
+        title="Criar Tipo de Situação"
       >
         Adicionar <i className="bi bi-plus-lg ms-1"></i>
       </button>
@@ -87,7 +87,7 @@ const TiposDeSituacoes = () => {
                                 data-bs-toggle="modal"
                                 data-bs-target="#ModalFormTipoDeSituacao"
                                 data-tipodesituacao_id={tipoDeSituacao.id}
-                                title="Editar Tipo de Local"
+                                title="Editar Tipo de Situação"
                               >
                                 <i className="bi bi-pencil-square"></i>
                               </button>
@@ -97,7 +97,7 @@ const TiposDeSituacoes = () => {
                                 onClick={() => {
                                   destroyTipoDeSituacao(tipoDeSituacao);
                                 }}
-                                title="Excluir Tipo de Local"
+                                title="Excluir Tipo de Situação"
                               >
                                 <i className="bi bi-x-square"></i>
                               </button>

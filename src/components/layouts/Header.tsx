@@ -47,34 +47,28 @@ const Header = () => {
       <a className="navbar-brand ms-lg-4" href="/">
         <img
           className="d-inline-block align-middle"
-          src={process.env.PUBLIC_URL + "/logo_itajai.png"}
-          alt=""
-          height="50"
-        />
-        <img
-          className="d-inline-block align-middle"
-          src={process.env.PUBLIC_URL + "/logo_procon.png"}
+          src={process.env.PUBLIC_URL + "/logoipsum-logo-8.svg"}
           alt=""
           height="50"
         />
       </a>
       <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarContent"
-          aria-controls="navbarContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+        className="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarContent"
+        aria-controls="navbarContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span className="navbar-toggler-icon"></span>
+      </button>
       <div className="container-fluid">
         <div className="collapse navbar-collapse" id="navbarContent">
           <span className="navbar-brand">
             {auth.user
               ? auth.user.first_name + " " + auth.user.last_name
-              : "Procon Itajaí"}
+              : "Procon Simplificado"}
           </span>
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <NavItem to="/perfil">Perfil</NavItem>

@@ -16,7 +16,7 @@ const FormSituacao = () => {
       <div className="row mb-2">
         <SelectForm
           name="tipo_de_situacao"
-          label="Tipo de Local:"
+          label="Tipo de Situação:"
           classNameDiv="col-lg-9"
           classNameLabel="col-lg-3"
           required

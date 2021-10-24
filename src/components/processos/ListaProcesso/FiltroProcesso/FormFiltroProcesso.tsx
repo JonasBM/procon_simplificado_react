@@ -105,7 +105,7 @@ const FormFiltroProcesso = () => {
           <div className="row">
             <SelectForm
               name="tipo_de_situacao"
-              label="Local atual:"
+              label="Situação atual:"
               classNameDiv="col-lg-6"
               classNameLabel="col-lg-6"
             >

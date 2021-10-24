@@ -36,9 +36,7 @@ export const DownloadTodosProcessos =
           var fileLink = document.createElement("a");
           fileLink.href = fileURL;
           fileLink.download =
-            "Procon_Itajaí_Simplificado" +
-            moment().format("YYYY-MM-DD") +
-            ".xlsx";
+            "Procon_Simplificado" + moment().format("YYYY-MM-DD") + ".xlsx";
           fileLink.click();
           URL.revokeObjectURL(fileURL);
         })

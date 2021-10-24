@@ -19,7 +19,7 @@ const queryString = require("query-string");
 export const destroySituacao = (_situacao: ISituacaoSerializer | undefined) => {
   if (_situacao !== undefined && _situacao.id !== undefined) {
     let newLine = "\r\n";
-    let confirm_alert = "Tem certeza que gostaria de deletar este local?";
+    let confirm_alert = "Tem certeza que gostaria de deletar esta situação?";
     confirm_alert += newLine;
     confirm_alert +=
       getTipoDeSituacaoBySituacao(_situacao)?.nome +
@@ -172,8 +172,8 @@ export default function ModalFormSituação() {
               {situacao !== undefined
                 ? situacao.id !== 0
                   ? "Editar " + situacao.data
-                  : "Novo Local"
-                : "Novo Local"}
+                  : "Nova Situação"
+                : "Nova Situação"}
             </h5>
             <button
               id={modalID + "Close"}

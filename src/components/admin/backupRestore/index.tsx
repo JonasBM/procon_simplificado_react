@@ -103,8 +103,8 @@ const BackupRestore = () => {
                 <th scope="col">Reclamante</th>
                 <th scope="col">Reclamada</th>
                 <th scope="col">CPF/CNPJ</th>
-                <th scope="col">Nome do último local</th>
-                <th scope="col">Data do último local</th>
+                <th scope="col">Nome da última situação</th>
+                <th scope="col">Data da última situação</th>
                 <th scope="col">Ficha de Atendimento</th>
               </tr>
             </thead>

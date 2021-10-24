@@ -16,7 +16,7 @@ export const destroyTipoDeSituacao = (
   if (_tipoDeSituacao !== undefined && _tipoDeSituacao.id !== undefined) {
     let newLine = "\r\n";
     let confirm_alert =
-      "Tem certeza que gostaria de deletar este Tipo de local?";
+      "Tem certeza que gostaria de deletar este Tipo de situação?";
     confirm_alert += newLine;
     confirm_alert += "Nome: " + _tipoDeSituacao.nome;
     if (window.confirm(confirm_alert)) {
@@ -123,8 +123,8 @@ export default function ModalFormTipoDeSituacao() {
               {tipoDeSituacao !== undefined
                 ? tipoDeSituacao.id !== 0
                   ? "Editar " + tipoDeSituacao.nome
-                  : "Novo Tipo de Local"
-                : "Novo Tipo de Local"}
+                  : "Novo Tipo de Situação"
+                : "Novo Tipo de Situação"}
             </h5>
             <button
               id={modalID + "Close"}

@@ -13,7 +13,7 @@ const FormTipoDeSituacao = () => {
         <InputForm
           name="nome"
           label="Nome:"
-          placeholder="nome do local"
+          placeholder="nome da situação"
           required
           autoFocus
         />
@@ -22,7 +22,7 @@ const FormTipoDeSituacao = () => {
         <InputForm
           name="descricao"
           label="Descricao:"
-          placeholder="descrição do local"
+          placeholder="descrição da situação"
           type="text"
           required
         />
