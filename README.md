@@ -12,6 +12,7 @@ REACT_APP_API_URL = "https://{backend.endpoint}/"
 
 Build the application
 ```
+npm install
 npm run build
 ```
 
